@@ -5,25 +5,25 @@ use std::collections::HashMap;
 
 // Web4 Required: A must!
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(crate = "near_sdk::serde")]
 pub struct Web4Request {
     #[serde(rename = "accountId")]
     pub account_id: Option<String>,
 
-    pub path: String,
+    pub path: Option<String>,
 
     // #[serde(default)]
-    pub params: HashMap<String, String>,
+    pub params: Option<HashMap<String, String>>,
 
     // #[serde(default)]
-    pub query: HashMap<String, Vec<String>>,
+    pub query: Option<HashMap<String, Vec<String>>>,
 
     pub preloads: Option<HashMap<String, Web4Response>>,
 }
 
 
-#[derive(Serialize, Deserialize, Default)]
+#[derive(Serialize, Deserialize, Default, Debug)]
 #[serde(crate = "near_sdk::serde")]
 pub struct Web4Response {
     #[serde(rename = "contentType")]

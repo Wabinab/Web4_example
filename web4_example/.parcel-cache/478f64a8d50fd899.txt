@@ -1,5 +1,6 @@
-18219
+18232
 47/workspaces/Web4_example/web4_example/yarn.lock1656484148357172212 0
+57/workspaces/Web4_example/web4_example/contract/.gitignore1656483733263872876 0
 70/workspaces/Web4_example/web4_example/contract/target/.rustc_info.json1656484632847341626 0
 66/workspaces/Web4_example/web4_example/contract/target/CACHEDIR.TAG1656484608471017515 0
 70/workspaces/Web4_example/web4_example/contract/target/release/examples1656484608471017515 1
@@ -90,7 +91,6 @@
 122/workspaces/Web4_example/web4_example/contract/target/release/.fingerprint/borsh-derive-047a2a2cb7186751/invoked.timestamp1656484619767162912 0
 126/workspaces/Web4_example/web4_example/contract/target/release/.fingerprint/borsh-derive-047a2a2cb7186751/lib-borsh-derive.json1656484621547186077 0
 121/workspaces/Web4_example/web4_example/contract/target/release/.fingerprint/borsh-derive-047a2a2cb7186751/lib-borsh-derive1656484621547186077 0
-124/workspaces/Web4_example/web4_example/contract/target/release/.fingerprint/proc-macro2-eae13e7aa999da70/lib-proc-macro2.json1656484613487081421 0
 121/workspaces/Web4_example/web4_example/contract/target/release/.fingerprint/proc-macro2-eae13e7aa999da70/invoked.timestamp1656484611887060685 0
 103/workspaces/Web4_example/web4_example/contract/target/release/.fingerprint/proc-macro2-eae13e7aa999da701656484613487081421 1
 144/workspaces/Web4_example/web4_example/contract/target/release/.fingerprint/proc-macro2-e609312877a3a524/run-build-script-build-script-build.json1656484611727058612 0
@@ -120,7 +120,7 @@
 103/workspaces/Web4_example/web4_example/contract/target/release/.fingerprint/syn-9923116e65171d88/lib-syn1656484619767162912 0
 95/workspaces/Web4_example/web4_example/contract/target/release/.fingerprint/syn-9923116e65171d881656484619767162912 1
 89/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/CACHEDIR.TAG1656484608471017515 0
-102/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/web4_example.wasm1656484632823341285 0
+102/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/web4_example.wasm1656490061892923560 0
 120/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/build/ahash-053ee982ea576fa2/output1656484612319066284 0
 131/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/build/ahash-053ee982ea576fa2/invoked.timestamp1656484612319066284 0
 120/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/build/ahash-053ee982ea576fa2/stderr1656484612427067684 0
@@ -132,7 +132,7 @@
 113/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/itoa-e49bd9614fc2d291.d1656484611163051302 0
 121/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libcfg_if-4ca2b295e9614f97.rlib1656484611051049851 0
 118/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/wee_alloc-e2a34779dd8e3e36.d1656484612127063796 0
-110/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libweb4_example.rlib1656484632827341342 0
+110/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libweb4_example.rlib1656490061900923662 0
 122/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libcfg_if-4ca2b295e9614f97.rmeta1656484611047049799 0
 125/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libwee_alloc-e2a34779dd8e3e36.rmeta1656484612279065766 0
 118/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/once_cell-70d507a516c24ac6.d1656484610131037927 0
@@ -146,14 +146,14 @@
 120/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libborsh-b1640f4c19ec2bb5.rlib1656484623903216739 0
 119/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libryu-0c2bf78aac0be487.rmeta1656484611007049280 0
 119/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libitoa-e49bd9614fc2d291.rlib1656484611247052391 0
-104/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/web4_example.d1656484632307333937 0
+104/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/web4_example.d1656490060700908351 0
 118/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/hashbrown-46f975476978fe1f.d1656484612939074319 0
 119/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libbs58-6604fbdc96c06d27.rlib1656484611559056434 0
 112/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/ryu-0c2bf78aac0be487.d1656484610887047725 0
 138/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libnear_contract_standards-59032a0127ed8b61.rlib1656484632155331772 0
 115/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/cfg_if-4ca2b295e9614f97.d1656484611043049747 0
 127/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libmemory_units-cfdb43266b7e98fa.rlib1656484610859047362 0
-89/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps1656484632827341342 1
+89/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps1656490061900923662 1
 132/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/bs58-6604fbdc96c06d27/dep-lib-bs581656484611179051509 0
 137/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/bs58-6604fbdc96c06d27/invoked.timestamp1656484611179051509 0
 128/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/bs58-6604fbdc96c06d27/lib-bs581656484611579056694 0
@@ -166,7 +166,7 @@
 142/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/wee_alloc-e2a34779dd8e3e36/invoked.timestamp1656484611983061929 0
 143/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/wee_alloc-e2a34779dd8e3e36/lib-wee_alloc.json1656484612427067684 0
 120/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/borsh-b1640f4c19ec2bb51656484623915216896 1
-145/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/web4_example-59ed06fa83459e16/invoked.timestamp1656484632163331886 0
+145/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/web4_example-59ed06fa83459e16/invoked.timestamp1656490060552906463 0
 126/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/ryu-0c2bf78aac0be487/lib-ryu1656484611183051561 0
 138/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/hashbrown-46f975476978fe1f/lib-hashbrown1656484613467081162 0
 143/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/hashbrown-46f975476978fe1f/lib-hashbrown.json1656484613467081162 0
@@ -197,9 +197,18 @@
 123/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/near-sdk-b4b0fb9df7135cac1656484630547308874 1
 156/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/serde-62e0ca16bb24cb31/run-build-script-build-script-build1656484611899060841 0
 97/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint1656484608475017564 1
-50/workspaces/Web4_example/web4_example/contract/src1656484107952650686 1
-46/workspaces/Web4_example/web4_example/contract1656484608471017515 1
+68/workspaces/Web4_example/web4_example/contract/res/web4_example.wasm1656490061916923866 0
+124/workspaces/Web4_example/web4_example/contract/target/release/.fingerprint/proc-macro2-eae13e7aa999da70/lib-proc-macro2.json1656484613487081421 0
+50/workspaces/Web4_example/web4_example/contract/res1656487631509718484 1
+68/workspaces/Web4_example/web4_example/contract/src/design/index.html1656490056260851768 0
+73/workspaces/Web4_example/web4_example/contract/src/design/application.css1656489203745895020 0
+58/workspaces/Web4_example/web4_example/contract/src/web4.rs1656487746219209815 0
+50/workspaces/Web4_example/web4_example/contract/src1656485073696971527 1
+46/workspaces/Web4_example/web4_example/contract1656487628013673783 1
+60/workspaces/Web4_example/web4_example/dist/index.40123f93.js1656487224740483960 0
 60/workspaces/Web4_example/web4_example/dist/index.632d7061.js1656484644699503180 0
+64/workspaces/Web4_example/web4_example/dist/index.40123f93.js.map1656487224776484729 0
+60/workspaces/Web4_example/web4_example/dist/index.2bd92b43.js1656487224740483960 0
 74/workspaces/Web4_example/web4_example/integration-tests/ts/src/main.ava.ts1656484107948650634 0
 73/workspaces/Web4_example/web4_example/integration-tests/ts/ava.config.cjs1656484107948650634 0
 71/workspaces/Web4_example/web4_example/integration-tests/rs/src/tests.rs1656484107948650634 0
@@ -208,7 +217,7 @@
 53/workspaces/Web4_example/web4_example/frontend/App.js1656484107936650480 0
 68/workspaces/Web4_example/web4_example/frontend/assets/css/global.css1656484107944650583 0
 57/workspaces/Web4_example/web4_example/frontend/assets/css1656484107940650531 1
-71/workspaces/Web4_example/web4_example/frontend/assets/js/near/config.js1656484107944650583 0
+71/workspaces/Web4_example/web4_example/frontend/assets/js/near/config.js1656486891572233817 0
 70/workspaces/Web4_example/web4_example/frontend/assets/js/near/utils.js1656484107944650583 0
 61/workspaces/Web4_example/web4_example/frontend/assets/js/near1656484107944650583 1
 53/workspaces/Web4_example/web4_example/frontend/assets1656484107940650531 1
@@ -216,7 +225,7 @@
 68/workspaces/Web4_example/web4_example/frontend/__mocks__/fileMock.js1656484107940650531 0
 46/workspaces/Web4_example/web4_example/frontend1656484107936650480 1
 52/workspaces/Web4_example/web4_example/ava.config.cjs1656484107932650428 0
-50/workspaces/Web4_example/web4_example/package.json1656484528906035408 0
+50/workspaces/Web4_example/web4_example/package.json1656488246489607064 0
 47/workspaces/Web4_example/web4_example/README.md1656484107996651252 0
 72/workspaces/Web4_example/web4_example/neardev/shared-test/test.near.json1656484107940650531 0
 57/workspaces/Web4_example/web4_example/neardev/shared-test1656484107940650531 1
@@ -910,6 +919,7 @@
 75/workspaces/Web4_example/web4_example/node_modules/@ledgerhq/logs/README.md1656484131956000000 0
 88/workspaces/Web4_example/web4_example/node_modules/@ledgerhq/hw-transport-webusb/LICENSE1656484131335999000 0
 103/workspaces/Web4_example/web4_example/node_modules/@ledgerhq/hw-transport-webusb/lib/TransportWebUSB.js1656484131335999000 0
+58/workspaces/Web4_example/web4_example/contract/redeploy.sh1656487675646291819 0
 107/workspaces/Web4_example/web4_example/node_modules/@ledgerhq/hw-transport-webusb/lib/TransportWebUSB.js.map1656484131335999000 0
 99/workspaces/Web4_example/web4_example/node_modules/@ledgerhq/hw-transport-webusb/lib/webusb.js.flow1656484131335999000 0
 84/workspaces/Web4_example/web4_example/node_modules/@ledgerhq/hw-transport-webusb/lib1656484142457095329 1
@@ -1540,6 +1550,7 @@
 86/workspaces/Web4_example/web4_example/node_modules/caniuse-lite/data/features/meter.js1656484128190000000 0
 96/workspaces/Web4_example/web4_example/node_modules/caniuse-lite/data/features/x-doc-messaging.js1656484128190000000 0
 96/workspaces/Web4_example/web4_example/node_modules/caniuse-lite/data/features/abortcontroller.js1656484128190000000 0
+57/workspaces/Web4_example/web4_example/contract/src/design1656489198461827895 1
 104/workspaces/Web4_example/web4_example/node_modules/caniuse-lite/data/features/intersectionobserver-v2.js1656484128190000000 0
 81/workspaces/Web4_example/web4_example/node_modules/svgo/plugins/removeComments.js1656484136392999000 0
 102/workspaces/Web4_example/web4_example/node_modules/caniuse-lite/data/features/css-placeholder-shown.js1656484128190000000 0
@@ -2035,7 +2046,7 @@
 66/workspaces/Web4_example/web4_example/node_modules/@parcel/workers1656484141877087826 1
 70/workspaces/Web4_example/web4_example/node_modules/fast-diff/README.md1656484130617000000 0
 96/workspaces/Web4_example/web4_example/node_modules/@parcel/reporter-cli/test/CLIReporter.test.js1656484135299999000 0
-107/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/web4_example.wasm1656484632823341285 0
+107/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/web4_example.wasm1656490061892923560 0
 76/workspaces/Web4_example/web4_example/node_modules/@parcel/reporter-cli/test1656484142477095588 1
 91/workspaces/Web4_example/web4_example/node_modules/@parcel/reporter-cli/src/bundleReport.js1656484135299999000 0
 90/workspaces/Web4_example/web4_example/node_modules/@parcel/reporter-cli/src/CLIReporter.js1656484135299999000 0
@@ -2664,7 +2675,7 @@
 81/workspaces/Web4_example/web4_example/node_modules/@parcel/watcher/src/binding.cc1656484135233000000 0
 73/workspaces/Web4_example/web4_example/node_modules/tweetnacl/CHANGELOG.md1656484129200000000 0
 71/workspaces/Web4_example/web4_example/node_modules/tweetnacl/AUTHORS.md1656484129200000000 0
-105/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/libweb4_example.rlib1656484632827341342 0
+105/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/libweb4_example.rlib1656490061900923662 0
 73/workspaces/Web4_example/web4_example/node_modules/tweetnacl/nacl-fast.js1656484129200000000 0
 70/workspaces/Web4_example/web4_example/node_modules/tweetnacl/README.md1656484129200000000 0
 60/workspaces/Web4_example/web4_example/node_modules/tweetnacl1656484142345093881 1
@@ -2751,6 +2762,7 @@
 80/workspaces/Web4_example/web4_example/node_modules/gauge/node_modules/ansi-regex1656484142205092069 1
 90/workspaces/Web4_example/web4_example/node_modules/gauge/node_modules/string-width/license1656484132917999000 0
 91/workspaces/Web4_example/web4_example/node_modules/gauge/node_modules/string-width/index.js1656484132917999000 0
+66/workspaces/Web4_example/web4_example/contract/src/design/css.html1656489957751608891 0
 70/workspaces/Web4_example/web4_example/node_modules/gauge/base-theme.js1656484132914000000 0
 56/workspaces/Web4_example/web4_example/node_modules/gauge1656484142053090103 1
 68/workspaces/Web4_example/web4_example/node_modules/callsites/license1656484129727999000 0
@@ -3433,7 +3445,7 @@
 81/workspaces/Web4_example/web4_example/node_modules/@jest/types/build/Transform.js1656484130977999000 0
 84/workspaces/Web4_example/web4_example/node_modules/@jest/types/build/TestResult.d.ts1656484130977999000 0
 78/workspaces/Web4_example/web4_example/node_modules/@jest/types/build/Circus.js1656484130977999000 0
-144/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/web4_example-59ed06fa83459e16/lib-web4_example1656484632831341399 0
+144/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/web4_example-59ed06fa83459e16/lib-web4_example1656490061908923764 0
 80/workspaces/Web4_example/web4_example/node_modules/@jest/types/build/Global.d.ts1656484130977999000 0
 82/workspaces/Web4_example/web4_example/node_modules/caniuse-lite/data/regions/IS.js1656484128190000000 0
 80/workspaces/Web4_example/web4_example/node_modules/@jest/types/build/Config.d.ts1656484130977999000 0
@@ -5280,7 +5292,7 @@
 98/workspaces/Web4_example/web4_example/node_modules/rxjs/_esm5/internal/util/subscribeToIterable.js1656484132309000000 0
 118/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/deps/libryu-0c2bf78aac0be487.rlib1656484611175051458 0
 91/workspaces/Web4_example/web4_example/node_modules/rxjs/_esm5/internal/util/tryCatch.js.map1656484132309000000 0
-84/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release1656484632835341456 1
+84/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release1656490061908923764 1
 93/workspaces/Web4_example/web4_example/node_modules/ava/node_modules/yargs/locales/pirate.json1656484129987999000 0
 99/workspaces/Web4_example/web4_example/node_modules/rxjs/_esm2015/internal/observable/fromPromise.js1656484132309000000 0
 69/workspaces/Web4_example/web4_example/node_modules/lodash/_WeakMap.js1656484130614000000 0
@@ -7405,6 +7417,7 @@
 100/workspaces/Web4_example/web4_example/node_modules/rxjs/_esm5/internal/operators/timeInterval.js.map1656484132309000000 0
 83/workspaces/Web4_example/web4_example/node_modules/rxjs/add/operator/switchMap.d.ts1656484132309000000 0
 65/workspaces/Web4_example/web4_example/node_modules/lodash/each.js1656484130614000000 0
+64/workspaces/Web4_example/web4_example/dist/index.2bd92b43.js.map1656487224776484729 0
 100/workspaces/Web4_example/web4_example/node_modules/rxjs/_esm2015/internal/operators/switchMap.js.map1656484132309000000 0
 88/workspaces/Web4_example/web4_example/node_modules/rxjs/add/operator/defaultIfEmpty.d.ts1656484132309000000 0
 96/workspaces/Web4_example/web4_example/node_modules/rxjs/_esm5/internal/operators/refCount.js.map1656484132309000000 0
@@ -7840,7 +7853,7 @@
 69/workspaces/Web4_example/web4_example/node_modules/lodash/core.min.js1656484130614000000 0
 85/workspaces/Web4_example/web4_example/node_modules/rxjs/src/add/operator/auditTime.ts1656484132309000000 0
 95/workspaces/Web4_example/web4_example/node_modules/update-notifier/node_modules/semver/index.js1656484130556999000 0
-148/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/web4_example-59ed06fa83459e16/dep-lib-web4_example1656484632163331886 0
+148/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/web4_example-59ed06fa83459e16/dep-lib-web4_example1656490060552906463 0
 81/workspaces/Web4_example/web4_example/node_modules/typescript/lib/lib.es2018.d.ts1656484138496000000 0
 69/workspaces/Web4_example/web4_example/node_modules/timsort/LICENSE.md1656484137584000000 0
 80/workspaces/Web4_example/web4_example/node_modules/css-select/lib/index.d.ts.map1656484136976000000 0
@@ -8145,7 +8158,7 @@
 64/workspaces/Web4_example/web4_example/node_modules/svgo/bin/svgo1656484136392999000 0
 86/workspaces/Web4_example/web4_example/node_modules/rxjs/_esm2015/internal/Scheduler.js1656484132309000000 0
 101/workspaces/Web4_example/web4_example/node_modules/package-json/node_modules/lowercase-keys/readme.md1656484132868000000 0
-102/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/libweb4_example.d1656484632835341456 0
+102/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/libweb4_example.d1656489726340660385 0
 81/workspaces/Web4_example/web4_example/node_modules/@swc/helpers/src/_ts_param.mjs1656484136474999000 0
 92/workspaces/Web4_example/web4_example/node_modules/caniuse-lite/data/features/css3-colors.js1656484128190000000 0
 84/workspaces/Web4_example/web4_example/node_modules/rxjs/add/observable/generate.d.ts1656484132309000000 0
@@ -8165,7 +8178,7 @@
 110/workspaces/Web4_example/web4_example/node_modules/regenerate-unicode-properties/Script_Extensions/Linear_B.js1656484128556999000 0
 84/workspaces/Web4_example/web4_example/node_modules/rxjs/internal/Subscription.js.map1656484132309000000 0
 76/workspaces/Web4_example/web4_example/node_modules/rxjs/scheduler/queue.d.ts1656484132309000000 0
-149/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/web4_example-59ed06fa83459e16/lib-web4_example.json1656484632831341399 0
+149/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/web4_example-59ed06fa83459e16/lib-web4_example.json1656490061908923764 0
 77/workspaces/Web4_example/web4_example/node_modules/rxjs/operator/concatAll.js1656484132309000000 0
 75/workspaces/Web4_example/web4_example/node_modules/rxjs/operator/publish.js1656484132309000000 0
 75/workspaces/Web4_example/web4_example/node_modules/css-what/lib/es/parse.js1656484137456000000 0
@@ -10977,7 +10990,7 @@
 89/workspaces/Web4_example/web4_example/node_modules/ava/node_modules/yargs/locales/hu.json1656484129987999000 0
 79/workspaces/Web4_example/web4_example/node_modules/rxjs/internal/util/isDate.js1656484132309000000 0
 70/workspaces/Web4_example/web4_example/node_modules/fs.realpath/LICENSE1656484130451999000 0
-57/workspaces/Web4_example/web4_example/contract/src/lib.rs1656484107960650789 0
+57/workspaces/Web4_example/web4_example/contract/src/lib.rs1656489719316569484 0
 72/workspaces/Web4_example/web4_example/node_modules/chalk/source/index.js1656484130826999000 0
 109/workspaces/Web4_example/web4_example/node_modules/@babel/plugin-proposal-async-generator-functions/README.md1656484127434999000 0
 118/workspaces/Web4_example/web4_example/node_modules/typescript/loc/lcl/KOR/Targets/TypeScriptProjectProperties.xaml.lcl1656484138496000000 0
@@ -13564,7 +13577,7 @@
 90/workspaces/Web4_example/web4_example/node_modules/rxjs/internal/operators/pairwise.js.map1656484132309000000 0
 86/workspaces/Web4_example/web4_example/node_modules/rxjs/src/operators/dematerialize.ts1656484132309000000 0
 67/workspaces/Web4_example/web4_example/node_modules/lodash/lodash.js1656484130614000000 0
-42/workspaces/Web4_example/web4_example/dist1656484644731503604 1
+42/workspaces/Web4_example/web4_example/dist1656487224776484729 1
 90/workspaces/Web4_example/web4_example/node_modules/rxjs/internal/operators/throwIfEmpty.js1656484132309000000 0
 66/workspaces/Web4_example/web4_example/node_modules/yargs/build/lib1656484144193117787 1
 93/workspaces/Web4_example/web4_example/node_modules/bip39/node_modules/@types/node/events.d.ts1656484133000999000 0
@@ -14443,7 +14456,7 @@
 57/workspaces/Web4_example/web4_example/node_modules/@types1656484140161065628 1
 68/workspaces/Web4_example/web4_example/node_modules/parcel/lib/bin.js1656484134358999000 0
 81/workspaces/Web4_example/web4_example/node_modules/@types/responselike/index.d.ts1656484133779000000 0
-99/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/web4_example.d1656484632835341456 0
+99/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/web4_example.d1656489726340660385 0
 66/workspaces/Web4_example/web4_example/node_modules/lodash/_Hash.js1656484130614000000 0
 86/workspaces/Web4_example/web4_example/node_modules/ava/node_modules/chalk/package.json1656484129703999000 0
 80/workspaces/Web4_example/web4_example/node_modules/@types/responselike/README.md1656484133779000000 0
@@ -15756,7 +15769,7 @@
 76/workspaces/Web4_example/web4_example/node_modules/lodash/fp/wrapperChain.js1656484130614000000 0
 100/workspaces/Web4_example/web4_example/node_modules/simple-get/node_modules/mimic-response/index.d.ts1656484132878999000 0
 69/workspaces/Web4_example/web4_example/node_modules/lodash/fp/pluck.js1656484130614000000 0
-51/workspaces/Web4_example/web4_example/out/main.wasm1656484632903342424 0
+51/workspaces/Web4_example/web4_example/out/main.wasm1656487213260311745 0
 67/workspaces/Web4_example/web4_example/node_modules/js-string-escape1656484142097090672 1
 74/workspaces/Web4_example/web4_example/node_modules/diff/lib/patch/parse.js1656484138244999000 0
 78/workspaces/Web4_example/web4_example/node_modules/rxjs/operator/switch.js.map1656484132309000000 0
@@ -16219,7 +16232,7 @@
 81/workspaces/Web4_example/web4_example/node_modules/usb/libusb/.private/bwince.cmd1656484131674999000 0
 104/workspaces/Web4_example/web4_example/node_modules/@cspotcode/source-map-support/source-map-support.d.ts1656484138362999000 0
 71/workspaces/Web4_example/web4_example/node_modules/lodash/_getHolder.js1656484130614000000 0
-53/workspaces/Web4_example/web4_example/dist/index.html1656484644699503180 0
+53/workspaces/Web4_example/web4_example/dist/index.html1656487224740483960 0
 91/workspaces/Web4_example/web4_example/node_modules/rxjs/src/internal/operators/partition.ts1656484132309000000 0
 70/workspaces/Web4_example/web4_example/node_modules/lodash/invokeMap.js1656484130614000000 0
 82/workspaces/Web4_example/web4_example/node_modules/entities/lib/maps/entities.json1656484137640000000 0
@@ -16872,7 +16885,7 @@
 72/workspaces/Web4_example/web4_example/node_modules/global-dirs/readme.md1656484132111999000 0
 73/workspaces/Web4_example/web4_example/node_modules/svgo/lib/svgo/tools.js1656484136392999000 0
 64/workspaces/Web4_example/web4_example/node_modules/get-intrinsic1656484142053090103 1
-127/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/web4_example-59ed06fa83459e161656484632831341399 1
+127/workspaces/Web4_example/web4_example/contract/target/wasm32-unknown-unknown/release/.fingerprint/web4_example-59ed06fa83459e161656488450096222006 1
 88/workspaces/Web4_example/web4_example/node_modules/caniuse-lite/data/features/picture.js1656484128190000000 0
 84/workspaces/Web4_example/web4_example/node_modules/rxjs/internal/operators/find.d.ts1656484132309000000 0
 74/workspaces/Web4_example/web4_example/node_modules/get-intrinsic/README.md1656484128901000000 0

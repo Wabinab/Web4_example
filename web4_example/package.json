@@ -4,10 +4,10 @@
   "license": "(MIT AND Apache-2.0)",
   "scripts": {
     "build": "npm run build:contract && npm run build:web",
-      "build:contract": "cd contract && rustup target add wasm32-unknown-unknown && cargo build --all --target wasm32-unknown-unknown --release && cp ./target/wasm32-unknown-unknown/release/web4_example.wasm ../out/main.wasm",
+      "build:contract": "cd contract && rustup target add wasm32-unknown-unknown && cargo build --all --target wasm32-unknown-unknown --release && cp ./target/wasm32-unknown-unknown/release/web4_example.wasm ./res/web4_example.wasm",
       "build:web": "parcel build frontend/index.html --public-url ./",
-    "deploy": "npm run build && npm run deploy:contract && npm run deploy:pages",
-      "deploy:contract": "near deploy",
+    "deploy": "npm run build && npm run deploy:contract",
+      "deploy:contract": "bash contract/redeploy.sh",
       "deploy:pages": "gh-pages -d dist/",
     "start": "npm run deploy && echo The app is starting! It will automatically open in your browser when ready && env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
     "dev": "nodemon --watch contract -e ts --exec \"npm run start\"",
