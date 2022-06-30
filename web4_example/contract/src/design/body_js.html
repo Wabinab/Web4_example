@@ -1,0 +1,16 @@
+<script>
+window.addEventListener("load", function () {
+  const login = document.getElementById("login");
+  const address = document.getElementById("address");
+
+  if (window.walletConnection.getAccountId() == '') {
+    login.onclick = window.login;
+    address.innerText = "";
+  } else {
+    login.onclick = window.logout;
+    login.innerText = "Logout";
+    address.innerText = window.walletConnection.getAccountId();
+  }
+  
+})
+</script>
