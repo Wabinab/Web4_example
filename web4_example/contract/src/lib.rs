@@ -20,6 +20,7 @@ const LOGIN_CONTROLLER_BODY: &str = include_str!("./design/controller/login_cont
 
 const ABOUT_BODY: &str = include_str!("./design/about.html");
 const INDEX_BODY: &str = include_str!("./design/index.html");
+const WRITE_BODY: &str = include_str!("./design/write.html");
 
 
 
@@ -43,6 +44,12 @@ impl Contract {
       if path == "/about" {
         return Web4Response::html_response(
           common_page_template(ABOUT_BODY)
+        );
+      }
+
+      if path == "/write" {
+        return Web4Response::html_response(
+          common_page_template(WRITE_BODY)
         );
       }
 
