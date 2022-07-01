@@ -1,0 +1,16 @@
+<div class="container">
+  <h1 class="text-center pt-5 pb-4">Design Considerations</h1>
+
+  <h2>Calling a Contract Held Elsewhere</h2>
+  <p>
+    We could have call a contract hold on the same account, but that 
+    disturb the contract's state. 
+    In any case, because it's not easy to delete state and re-create 
+    account for a child of testnet or near, we choose to hold contract
+    that requires state on a further sub-account, which we can easily
+    delete and recreate the account if anything fails during migration. 
+    As for the web4 page; as something like 
+    <strong>sub-account.account.testnet.page</strong> fails when we try to 
+    visit that page (due to some HSTS error), we have to hold it on account.testnet.page instead. 
+  </p>
+</div>
