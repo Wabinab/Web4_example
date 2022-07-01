@@ -2,7 +2,8 @@ use std::fs::File;
 use std::io::prelude::*;
 
 const HEAD_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/head.html");
-const CSS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/css.html");
+const BOOTSTRAP_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/bootstrap.html");
+const CUSTOM_CSS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/css.html");
 const IMPORTMAP_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/importmap.html");
 const JS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/js.html");
 
@@ -15,7 +16,8 @@ const BODY_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/bod
 
 fn main() -> std::io::Result<()> {
     let header: &str = &HEAD_BODY
-      .replace("%STYLE%", CSS_BODY)
+      .replace("%BOOTSTRAP%", BOOTSTRAP_BODY)
+      .replace("%STYLE%", CUSTOM_CSS_BODY)
       .replace("%IMPORTMAP%", IMPORTMAP_BODY)
       .replace("%SCRIPT%", JS_BODY);
 

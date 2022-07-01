@@ -1,0 +1,10 @@
+<div class="container pt-3 pb-5">
+  <h2>Read Only</h2>
+  <div id="reading"></div>
+</div>
+
+
+<script type="module">
+  import { marked } from 'marked';
+  document.getElementById("reading").innerHTML = marked(editMde.value());
+</script>
