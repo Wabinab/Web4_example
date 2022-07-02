@@ -13,4 +13,32 @@
     <strong>sub-account.account.testnet.page</strong> fails when we try to 
     visit that page (due to some HSTS error), we have to hold it on account.testnet.page instead. 
   </p>
+
+  <h2>Why Use Your Own API Keys?</h2>
+  <p>
+    One had to admit, this is a really difficult decision, as it makes users, whom have to go into 
+    this hassle of opening up nft.storage and login (assuming they don't have GitHub so login is more
+    difficult than those whom does), then find the API Keys tab, click on it, give it a name for the 
+    key, then save API. Irregardless of whether we're using cookies to store it for future use or not,
+    even one single time going through that process is unreasonable, for a user that even have difficulty
+    trying to control his/her mouse! 
+  </p>
+  <p>
+    API Keys are stupid. IPFS API keys doesn't allow partial access. It doesn't have restrictions. 
+    Most importantly: it's on the frontend! Anyone can get access to the API key when you hard-coded it! 
+    Unless they do something like "generate new API Key on demand" and "disposable single-use only API key",
+    otherwise, even storing it on the <pre>process.env</pre> makes discoverable on the web console. 
+    Check <a href="https://blog.logrocket.com/best-practices-for-managing-and-storing-secrets-in-frontend-development/">here</a>
+    for how to access a <pre>process.env</pre> API key and hack it away! 
+  </p>
+
+  <h2>Why Do We Store Whole NFT Data on IPFS than on NEAR?</h2>
+  <p>
+    Well, <strong>storage cost!</strong> Currently, IPFS is free, NEAR isn't. Testnet is free, but not
+    on mainnet. If we are not to disturb the user worrying about having to pay money just to post their
+    blog, how do we pay for them minimal cost? Assuming one wants to be as stingy as possible, storing the 
+    CID (and perhaps storing it as the most cost effective form, least byte format) decreases maintenance cost.
+    Something that we can support even with minimal gas fee: that only cost the 30% of gas fee paid to contract 
+    host (if you know about that info, you know what one means. Ignore if you don't know.)
+  </p>
 </div>

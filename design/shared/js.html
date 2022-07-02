@@ -97,4 +97,53 @@ function login() {
 
 window.login = login
 window.logout = logout
+
+
+// import { NFTStorage } from 'nft.storage'
+
+// ERC-1155 metadata standards. 
+async function store_nft(markdown_text, api_key) {
+  var title = markdown_text.split("\n")[0].trim().substr(0, 50);
+
+  var nft = {
+    image: null,  // simple bro, no need image. 
+    name: title,
+    description: null,
+    properties: {
+      authors: [{ name: window.walletConnection.getAccountId() }],
+      content: {
+        "text/markdown": markdown_text
+      }
+    }
+  }
+
+  // var client = new NFTStorage({ token: api_key });
+  // var metadata = await client.store(nft);
+
+  var bearer = "Bearer " + api_key;
+
+  fetch("https://api.nft.storage/upload", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": bearer
+    },
+    body: JSON.stringify(nft)
+  }).then(
+    resp => {
+      if (resp.ok == true) {
+        alert("Successfully saved.");
+        console.log("Metadata:", resp);
+        console.log("Metadata URI: ", resp.url);
+
+        // Change to storing on the contract, the resp.url. 
+      } else {
+        alert("Failed to save.");
+        console.log(resp.error);
+      }
+    }
+  )
+}
+
+window.store_nft = store_nft
 </script>

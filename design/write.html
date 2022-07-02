@@ -1,7 +1,19 @@
 <div class="container pt-3 pb-5">
-  <form id="mint_nft"></form>
-  <textarea id="editor">
-  </textarea>
+
+  <form id="writeform">
+    <input type="submit" class="btn btn-success btn-lg col-4" value="Save to IPFS">
+
+    <p class="pt-3">Get an API Key <a href="https://nft.storage/manage/">here</a></p>
+    <p>
+      <label for="api_key">NFT Storage API Key:</label>
+      <textarea id="api_key" cols="80" rows="4"></textarea>
+    </p>
+    <p>
+      <textarea id="editor" form="writeform"></textarea>
+    </p>
+
+    <input type="submit" class="btn btn-success btn-lg col-4" value="Save to IPFS">
+  </form>
 </div>
 
 <script>
@@ -9,4 +21,17 @@
     element: document.getElementById('editor'),
     placeholder: "Write Your Thoughts!"
   });
+
+  window.addEventListener("load", function() {
+    const form = document.getElementById("writeform");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      window.store_nft(
+        editMde.value(), 
+        document.getElementById("api_key").value
+      );
+    })
+  })
 </script>
