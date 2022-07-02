@@ -19,7 +19,11 @@
 <script>
   const editMde = new SimpleMDE({
     element: document.getElementById('editor'),
-    placeholder: "Write Your Thoughts!"
+    placeholder: "Write Your Thoughts!",
+    autosave: {
+      enabled: true,
+      uniqueId: "InternalSaveWrite",
+    }
   });
 
   window.addEventListener("load", function() {
