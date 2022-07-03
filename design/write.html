@@ -17,13 +17,15 @@
 </div>
 
 <script>
+  var autosaveUniqueId = "InternalSaveWrite";
   const editMde = new SimpleMDE({
     element: document.getElementById('editor'),
     placeholder: "Write Your Thoughts!",
     autosave: {
       enabled: true,
-      uniqueId: "InternalSaveWrite",
-    }
+      uniqueId: autosaveUniqueId,
+    },
+    spellChecker: false
   });
 
   const ApiKey = document.getElementById('api_key');
@@ -40,7 +42,8 @@
 
       window.store_nft(
         editMde.value(), 
-        ApiKey.value
+        ApiKey.value,
+        autosaveUniqueId
       );
     })
   })

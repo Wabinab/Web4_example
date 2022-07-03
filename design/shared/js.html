@@ -102,8 +102,8 @@ window.logout = logout
 // ==================================================================
 // import { NFTStorage } from 'nft.storage'
 
-async function store_nft(markdown_text, api_key) {
-  var title = markdown_text.split("\n")[0].trim().substr(0, 50);
+async function store_nft(markdown_text, api_key, autosaveUniqueId) {
+  var title = markdown_text.split("\n")[0].trim().replaceAll('# ', '').substr(0, 50);
   var bearer = "Bearer " + api_key;
 
   var nft = {
@@ -133,6 +133,8 @@ async function store_nft(markdown_text, api_key) {
 
     if (jsonResp.ok == true) {
       alert("Successfully saved.");
+      localStorage.removeItem(autosaveUniqueId);
+
       window.contract.register_log({
         callbackUrl: window.location.origin,
         args: {
