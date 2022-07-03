@@ -190,11 +190,22 @@ async function store_nft(markdown_text, api_key) {
       console.log(jsonResp.error);
     }
   })
+}
 
 
+async function get_nft(cid) {
+    var response = await fetch('https://ipfs.io/ipfs/' + cid);
+
+    if (!response.ok) {
+      return { "error": "Response have problem." };
+    }
+
+    var jsonResp = await response.json();
+    return jsonResp;
 }
 
 window.store_nft = store_nft
+window.get_nft = get_nft
 </script>
   <!-- Custom Style Outside of Bootstrap -->
 <style>

@@ -36,7 +36,15 @@
 
             var str = "";
             window.looper.forEach((slide) => {
-                str += header + '<h5 class="card-title">' + slide + '</h5>' + footer;
+                window.get_nft(slide).then(data => {
+                    str += header 
+                        + '<h5 class="card-title">' + data.name + '</h5>' 
+                        // remove 's' from 'authors' later. 
+                        + '<p class="card-text">' + data.properties.authors + '</p>'
+                        + '<p class="card-text">' + data.properties.content['text/markdown'].substr(0, 50) + '</p>'
+                        + footer;
+                });
+                
             });
 
             // str += footer;
