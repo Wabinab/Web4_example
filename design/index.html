@@ -1,1 +1,46 @@
 <h1 class="text-center">Hi, Belle!</h1>
+<div id="variousBlogs" class="container"></div>
+
+<!-- <div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Title</h5>
+                <p class="card-text">Properties author</p>
+                <p class="card-text">Properties content substr</p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<script>
+    window.addEventListener("load", function() {
+        window.contract.get_items_by_newest({
+            "from_index": 0,
+            "limit": 20,
+        }).then((value) => {
+            window.looper = value;
+
+            var header = `
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <!-- for image -->
+                    </div>
+                    <div class="col-md-8">
+                <div class="card-body">`;
+
+            var footer =  `</div></div></div></div>`;
+
+            var str = "";
+            window.looper.forEach((slide) => {
+                str += header + '<h5 class="card-title">' + slide + '</h5>' + footer;
+            });
+
+            // str += footer;
+            document.getElementById("variousBlogs").innerHTML = str;
+        });
+    })
+</script>

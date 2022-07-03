@@ -51,7 +51,28 @@ impl Contract {
     }
 
     // get items paginated.
+    pub fn get_items_by_newest(
+        &self,
+        from_index: Option<u64>,
+        limit: Option<u64>,
+    ) -> Vec<String> {
+        let newest_id = self.list_of_wlog.len() - 1;
+        let start = from_index.unwrap_or(0u64);
+        let limit = limit.unwrap_or(10);
+
+        let mut result: Vec<String> = vec![];
+
+        for i in 0..limit {
+            if newest_id >= (start + i) {
+                result.push(self.list_of_wlog.get(newest_id - start - i).unwrap());
+            }
+        }
+
+        result
+    }
 
     // remove item if detected not matching. Can only be called by specific people.
+    
+    // Get items by owner id in the future (or if we have time).
 }
 

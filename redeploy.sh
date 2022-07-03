@@ -3,9 +3,9 @@
 cd precompiler
 cargo run
 
-cd ..
-cd contract2
-bash redeploy.sh
+# cd ..
+# cd contract2
+# bash redeploy.sh
 
 cd ..
 cd contract

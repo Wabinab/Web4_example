@@ -5,3 +5,5 @@ pub(crate) fn common_page_template(
 ) -> String {
     PRECOMPILED_BODY.replace("%CONTENT%", page)
 }
+
+

@@ -4,6 +4,7 @@ mod utils;
 use crate::web4::*;
 use crate::utils::*;
 
+use near_sdk::AccountId;
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::serde::{Deserialize, Serialize};
 use near_sdk::{near_bindgen};
@@ -45,6 +46,8 @@ impl Contract {
           common_page_template(WRITE_BODY)
         );
       }
+
+      // when moved here, we'll do the things here than on js. 
 
       Web4Response::html_response(
         common_page_template(INDEX_BODY)
