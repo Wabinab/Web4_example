@@ -30,9 +30,7 @@
       "toidentifier": "https://ga.jspm.io/npm:toidentifier@1.0.1/index.js",
       "tweetnacl": "https://ga.jspm.io/npm:tweetnacl@1.0.3/nacl-fast.js",
       "u3": "https://ga.jspm.io/npm:u3@0.1.1/index.js",
-      "marked": "https://ga.jspm.io/npm:marked@4.0.17/lib/marked.esm.js",
-      "bootstrap": "https://ga.jspm.io/npm:bootstrap@5.1.3/dist/js/bootstrap.esm.js",
-      "@popperjs/core": "https://ga.jspm.io/npm:@popperjs/core@2.11.5/lib/index.js"
+      "marked": "https://ga.jspm.io/npm:marked@4.0.17/lib/marked.esm.js"
     }
   }
 </script>
@@ -46,7 +44,7 @@
   <!-- Scripts -->
 <script type="module">
 import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
-const CONTRACT_NAME = 'damnit.fakenear.testnet'
+const CONTRACT_NAME = 'oregon.fakenear.testnet'
 
 function getConfig(env) {
   switch (env) {
@@ -121,9 +119,9 @@ window.accountId = window.walletConnection.getAccountId()
 // Initializing our contract APIs by contract name and configuration
 window.contract = await new Contract(window.walletConnection.account(), nearConfig.contractName, {
   // View methods are read only. They don't modify the state, but usually return some value.
-  viewMethods: [],
+  viewMethods: ['get_item'],
   // Change methods can modify the state. But you don't receive the returned value when called.
-  changeMethods: [],
+  changeMethods: ['register_log'],
 })
 
 function logout() {
@@ -144,11 +142,12 @@ window.login = login
 window.logout = logout
 
 
+// ==================================================================
 // import { NFTStorage } from 'nft.storage'
 
-// ERC-1155 metadata standards. 
 async function store_nft(markdown_text, api_key) {
   var title = markdown_text.split("\n")[0].trim().substr(0, 50);
+  var bearer = "Bearer " + api_key;
 
   var nft = {
     image: null,  // simple bro, no need image. 
@@ -162,32 +161,37 @@ async function store_nft(markdown_text, api_key) {
     }
   }
 
-  // var client = new NFTStorage({ token: api_key });
-  // var metadata = await client.store(nft);
-
-  var bearer = "Bearer " + api_key;
-
-  fetch("https://api.nft.storage/upload", {
+  fetch('https://api.nft.storage/upload', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Authorization": bearer
     },
     body: JSON.stringify(nft)
-  }).then(
-    resp => {
-      if (resp.ok == true) {
-        alert("Successfully saved.");
-        console.log("Metadata:", resp);
-        console.log("Metadata URI: ", resp.url);
+  }).then((resp) => {
+    return resp.json();
+  }).then((jsonResp) => {
+    console.log(jsonResp);
+    var dataValue = jsonResp.value;
 
-        // Change to storing on the contract, the resp.url. 
-      } else {
-        alert("Failed to save.");
-        console.log(resp.error);
-      }
+    if (jsonResp.ok == true) {
+      alert("Successfully saved.");
+      window.contract.register_log({
+        callbackUrl: window.location.origin,
+        args: {
+          "cid": dataValue.cid
+        },
+        gas: "300000000000000",
+        amount: 0
+      },);
+
+    } else {
+      alert("Failed to save.");
+      console.log(jsonResp.error);
     }
-  )
+  })
+
+
 }
 
 window.store_nft = store_nft

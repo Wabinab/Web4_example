@@ -26,15 +26,21 @@
     }
   });
 
+  const ApiKey = document.getElementById('api_key');
+  var storage_key_name = 'nftstorage_api_key'
+  ApiKey.value = localStorage.getItem(storage_key_name);
+
   window.addEventListener("load", function() {
     const form = document.getElementById("writeform");
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
+      localStorage.setItem(storage_key_name, ApiKey.value);
+
       window.store_nft(
         editMde.value(), 
-        document.getElementById("api_key").value
+        ApiKey.value
       );
     })
   })
