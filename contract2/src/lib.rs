@@ -1,8 +1,8 @@
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
-// use near_sdk::serde::{Deserialize, Serialize};
+// use near_sdk::serde::{Deserialize};
 use near_sdk::{env, near_bindgen, PanicOnDefault, BorshStorageKey};
 use near_sdk::collections::{Vector};
-
+// use ehttp::Response;
 
 mod utils;
 
@@ -38,7 +38,17 @@ impl Contract {
         // How to check the given cid is correct? I don't know. 
         self.list_of_wlog.push(&cid);
     }
+    
 
+    // pub fn get_code(
+    //     &self,
+    //     cid: String 
+    // ) {
+    //     test_code(format!(
+    //         "https://ipfs.io/ipfs/{}",
+    //         cid
+    //     ).as_str());
+    // }
 
     pub fn get_item(
         &self,
