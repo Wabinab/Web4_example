@@ -1,6 +1,9 @@
+use std::mem::size_of;
+
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
+use near_sdk::json_types::U128;
 // use near_sdk::serde::{Deserialize};
-use near_sdk::{env, near_bindgen, PanicOnDefault, BorshStorageKey};
+use near_sdk::{env, near_bindgen, PanicOnDefault, BorshStorageKey, Balance, require};
 use near_sdk::collections::{Vector};
 // use ehttp::Response;
 
@@ -31,24 +34,19 @@ impl Contract {
     }
 
 
+    #[payable]
     pub fn register_log(
         &mut self,
         cid: String
     ) {
+        require!(
+            env::attached_deposit() == 1120000000000000000000,
+            "Please attach 0.00112N for storage."
+        );
+
         // How to check the given cid is correct? I don't know. 
         self.list_of_wlog.push(&cid);
     }
-    
-
-    // pub fn get_code(
-    //     &self,
-    //     cid: String 
-    // ) {
-    //     test_code(format!(
-    //         "https://ipfs.io/ipfs/{}",
-    //         cid
-    //     ).as_str());
-    // }
 
     pub fn get_item(
         &self,

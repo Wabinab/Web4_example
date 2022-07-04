@@ -8,41 +8,6 @@ pub(crate) fn expect_lightweight<T>(
 }
 
 
-// #[derive(Deserialize, Debug)]
-// pub(crate) struct API {
-
-// }
-
-
-// #[derive(Deserialize, Debug)]
-// pub(crate) struct Response {
-
-// }
-
-// #[tokio::main]
-// pub(crate) async fn check_validity_api(url: &str) -> Result<(), Box<dyn std::error::Error>> {
-//     let resp: API = reqwest::get(url)
-//         .await?
-//         .json()
-//         .await?;
-//     println!("{:#?}", resp);
-//     Ok(())
-// }
-
-// pub(crate) fn check_validity_api(url: &str) -> Result<(), Box<dyn std::error::Error>> {
-//     let resp: API = reqwest::get(url)?.json()?;
-//     println!("{:#?}", resp);
-//     Ok(())
-// }
-
-
-
-// pub(crate) fn test_code(url: &str) {
-    // let request = ehttp::Request::get(url);
-    // ehttp::fetch(request, |result: ehttp::Result<ehttp::Response>| {
-    //     env::log_str(format!(
-    //         "{:#?}",
-    //         result.unwrap()
-    //     ).as_str());
-    // });
+// pub(crate) fn calc_storage_cost(storage_used: u64) -> Balance {
+//     env::storage_byte_cost() * Balance::from(storage_used)
 // }

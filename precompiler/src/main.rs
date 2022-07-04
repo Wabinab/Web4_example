@@ -6,6 +6,8 @@ const HEAD_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/hea
 const CUSTOM_CSS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/css.html");
 const IMPORTMAP_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/importmap.html");
 const JS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/js.html");
+const FLASH_CSS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/extra/flash.min.css");
+const FLASH_JS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/extra/flash.min.js");
 
 const NAVBAR_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/navbar.html");
 const LOGIN_CONTROLLER_BODY: &str = include_str!("/workspaces/Web4_example/design/controller/login_controller.html");
@@ -19,7 +21,9 @@ fn main() -> std::io::Result<()> {
       // .replace("%BOOTSTRAP%", BOOTSTRAP_BODY)
       .replace("%STYLE%", CUSTOM_CSS_BODY)
       .replace("%IMPORTMAP%", IMPORTMAP_BODY)
-      .replace("%SCRIPT%", JS_BODY);
+      .replace("%SCRIPT%", JS_BODY)
+      .replace("%FLASH_CSS%", FLASH_CSS_BODY)
+      .replace("%FLASH_JS%", FLASH_JS_BODY);
 
     let navbar: &str = &NAVBAR_BODY
       .replace("%LOGIN_CONTROLLER%", LOGIN_CONTROLLER_BODY);
