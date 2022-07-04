@@ -55,7 +55,13 @@
                     document.getElementById("href-" + index).href = "/article/" + index;
                     document.getElementById("title-" + index).innerText = data.name;
                     document.getElementById("author-" + index).innerText = data.properties.author;
-                    document.getElementById("text-" + index).innerText = data.properties.content["text/markdown"].substr(0, 50);
+
+                    var text = data.properties.content["text/markdown"];
+                    var arr = text.split("\n");
+                    var result = arr.splice(0, 1);
+                    result.push(arr.join(" "));
+                    var text = result[1];
+                    document.getElementById("text-" + index).innerText = text.substr(0, 100);
                 });
             });
         });

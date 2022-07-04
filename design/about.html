@@ -44,6 +44,12 @@
 
   <h2>Payment for Storage of CID</h2>
   <p>
-    
+    We actually want free of charge save; but there are security issues with it. Initially, we thought of 
+    checking whether the CID is valid; then check whether it saves the information we need; then check it's 
+    saved on nft.storage; then smart contract refuses to compile after include ehttp library. Similarly, 
+    smart contract refuses to compile when using async with reqwest library, with "Contract API cannot be async." 
+    error. So, we'll go back to the easiest way to solve the problem: just ask the user to pay for storage. 
+    As of NEAR $10 USD, it cost about 1.2 cents; and as of now, it's less than a cent for save. We are only scared
+    of DDOS that takes all our money away; otherwise, should be fine. 
   </p>
 </div>

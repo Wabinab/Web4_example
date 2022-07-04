@@ -6,4 +6,3 @@ pub(crate) fn common_page_template(
     PRECOMPILED_BODY.replace("%CONTENT%", page)
 }
 
-

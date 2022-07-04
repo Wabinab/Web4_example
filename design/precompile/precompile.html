@@ -123,7 +123,7 @@ window.accountId = window.walletConnection.getAccountId()
 // Initializing our contract APIs by contract name and configuration
 window.contract = await new Contract(window.walletConnection.account(), nearConfig.contractName, {
   // View methods are read only. They don't modify the state, but usually return some value.
-  viewMethods: ['get_item', 'get_items_by_newest'],
+  viewMethods: ['get_item', 'get_items_by_newest', 'est_storage'],
   // Change methods can modify the state. But you don't receive the returned value when called.
   changeMethods: ['register_log'],
 })
@@ -182,14 +182,21 @@ async function store_nft(markdown_text, api_key, autosaveUniqueId) {
       window.FlashMessage.success("Successfully Saved to IPFS.");
       localStorage.removeItem(autosaveUniqueId);
 
-      window.contract.register_log({
-        callbackUrl: window.location.origin,
-        args: {
-          "cid": dataValue.cid
-        },
-        gas: "300000000000000",
-        amount: "1120000000000000000000"  // 0.00112 N
-      },);
+      // Calculate storage cost then call contract with that amount. 
+      window.contract.est_storage({
+        "cid": dataValue.cid
+      }).then((amount) => {
+        window.contract.register_log({
+          callbackUrl: window.location.origin,
+          args: {
+            "cid": dataValue.cid
+          },
+          gas: "300000000000000",
+          amount: amount
+        },);
+      })
+
+      
 
     } else {
       window.FlashMessage.error("Failed to save.");
