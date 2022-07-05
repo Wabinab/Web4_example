@@ -8,10 +8,39 @@ pub(crate) fn expect_lightweight<T>(
 }
 
 
+pub(crate) fn hash_account_id(account_id: &AccountId) -> CryptoHash {
+    let mut hash = CryptoHash::default();
+
+    hash.copy_from_slice(&env::sha256(account_id.as_bytes()));
+    hash
+}
+
+
+pub(crate) fn estimate_total_storage(
+  first_time: bool,
+  cid: &str,
+  account_id: &AccountId
+) -> u64 {
+    estimate_storage(cid) + estimate_owner_storage(first_time, account_id)
+}
+
+
 pub(crate) fn estimate_storage(cid: &str) -> u64 {
     cid.len() as u64
     + 29u64  // Magic number 
     + (size_of::<String>() as u64 * 2)  // size on-chain is 12; but stored on mem is 24.
+}
+
+
+pub(crate) fn estimate_owner_storage(
+  first_time: bool,
+  account_id: &AccountId
+) -> u64 {
+    if first_time {
+      return 422u64 + (account_id.as_str().len() * 2) as u64
+    } else {
+      return 180u64
+    }
 }
 
 
@@ -57,4 +86,46 @@ pub fn yoctonear_to_near(amount: u128) -> f64 {
 
 
     num.parse().unwrap()
+}
+
+
+impl Contract {
+    /// Add token to owner set. 
+    pub(crate) fn internal_add_token_to_owner(
+      &mut self,
+      account_id: &AccountId,
+      token_id: &u64
+    ) {
+      let mut tokens_set = self.wlog_by_owner.get(account_id)
+          .unwrap_or_else(|| {
+            UnorderedSet::new(
+              StorageKey::WlogByOwnerInner { token_type_hash: hash_account_id(&account_id) }
+            )
+      });
+
+      tokens_set.insert(token_id);
+      self.wlog_by_owner.insert(account_id, &tokens_set);
+    }
+
+
+    /// Remove token from owner set.
+    pub(crate) fn internal_remove_token_from_owner(
+      &mut self,
+      account_id: &AccountId,
+      token_id: &u64
+    ) {
+      let mut tokens_set = expect_lightweight(
+        self.wlog_by_owner.get(account_id),
+        "This token doesn't belong to this person."
+      ); 
+
+      tokens_set.remove(token_id);
+
+      // Remove owner from collection if now empty. 
+      if tokens_set.is_empty() {
+        self.wlog_by_owner.remove(account_id);
+      } else {
+        self.wlog_by_owner.insert(account_id, &tokens_set);
+      }
+    }
 }

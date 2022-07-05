@@ -5,3 +5,4 @@ export PARENT=fakenear.testnet
 export CONTRACT=oregon.$PARENT
 
 near deploy --accountId $CONTRACT --wasmFile ../res/contract2.wasm
+# near deploy --accountId $CONTRACT --wasmFile ../res/contract2.wasm --initFunction "migrate" --initArgs '{}'
