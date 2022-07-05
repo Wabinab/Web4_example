@@ -84,10 +84,10 @@ impl Contract {
     
     pub fn get_item(
         &self,
-        item_no: u64
+        item_no: String
     ) -> String {
         expect_lightweight(
-            self.list_of_wlog.get(item_no),
+            self.list_of_wlog.get(item_no.parse().unwrap()),
             "Cannot find this item."
         )
     }
@@ -95,11 +95,12 @@ impl Contract {
     // get items paginated.
     pub fn get_items_by_newest(
         &self,
-        from_index: Option<u64>,
+        from_index: Option<String>,
         limit: Option<u64>,
     ) -> Vec<String> {
         let newest_id = self.list_of_wlog.len() - 1;
-        let start = from_index.unwrap_or(0u64);
+        let from_index = from_index.unwrap_or("0".to_owned());
+        let start: u64 = from_index.as_str().parse().unwrap();
         let limit = limit.unwrap_or(10);
 
         let mut result: Vec<String> = vec![];

@@ -1,0 +1,48 @@
+<nav aria-label="Pagination" class="pt-3 pb-3">
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><button type="submit" class="page-link" id="home-page">Home</a></li>
+        <li class="page-item"><button type="submit" class="page-link" id="prev-page">Previous</a></li>
+        <li class="page-item"><button type="submit" class="page-link" id="next-page">Next</a></li>
+    </ul>
+</nav>
+
+
+<script>
+    window.addEventListener("load", function() {
+        var home = document.getElementById("home-page");
+        var prev = document.getElementById("prev-page");
+        var next = document.getElementById("next-page");
+
+        if (window.location.search != '') {
+            var current_page = parseInt(window.location.search.split("?page=")[1].split("&")[0]);
+        } else {
+            var current_page = 1;
+        }
+
+
+        home.onclick = function(event) {
+            event.preventDefault();
+            window.location.search = "?page=1";
+        }
+       
+
+        prev.onclick = function(event) {
+            event.preventDefault();
+            current_page -= 1;
+
+            if (current_page < 1) {
+                current_page = 1
+            }
+
+            window.location.search = "?page=" + current_page
+        };
+
+
+        next.onclick =  function(event) {
+            event.preventDefault();
+            current_page += 1;
+
+            window.location.search = "?page=" + current_page
+        };
+    })
+</script>

@@ -1,10 +1,85 @@
 <div class="container pt-3 pb-5">
-  <h2 class="text-center">Read Only</h2>
   <div id="reading"></div>
+  <div class="pt-5">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">Author</th>
+          <td id="author-name"></td>
+        </tr>
+        <tr>
+          <th scope="row">CID</th>
+          <td id="cid"></td>
+        </tr>
+        <tr>
+          <th scope="row">Created On</th>
+          <td id="created-on"></td>
+        </tr>
+        <tr>
+          <th scope="row">Storage Used (bytes)</th>
+          <td id="data-size"></td>
+        </tr>
+        <tr>
+          <th scope="row">Pin Status</th>
+          <td id="pin-status"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 
 <script type="module">
   import { marked } from 'marked';
-  document.getElementById("reading").innerHTML = marked(editMde.value());
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    highlight: function(code, lang) {
+      const hljs = require('highlight.js');
+      const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+      return hljs.highlight(code, { language }).value;
+    },
+    langPrefix: 'hljs language-',
+    gfm: true,
+    smartLists: true
+  })
+
+  //Unable to prevent Re-DOS attack due to only a single HTML file rather than including 
+  // multiple js file: unless with special methods. 
+
+  var id = window.location.pathname.split("/").pop();
+
+  window.contract.get_item({
+    "item_no": id
+  }).then((cid) => {
+    window.get_nft(cid).then((data) => {
+      document.getElementById("reading").innerHTML = marked.parse(
+        data.properties.content["text/markdown"]
+      );
+
+      var headers = document.querySelectorAll("h1");
+      headers.forEach((element) => element.classList.add("text-center", "pt-3", "pb-5"));
+
+      var imgs = document.querySelectorAll("img");
+      imgs.forEach((element) => element.classList.add("mx-auto", "d-block"));
+
+      document.getElementById("author-name").innerText = data.properties.author;
+      document.getElementById("cid").innerText = cid;
+    });
+
+    fetch("https://api.nft.storage/check/" + cid, {
+        method: "GET"
+    }).then(
+      (resp) => resp.json()
+    ).then((jsonResp) => {
+      document.getElementById("created-on").innerText = jsonResp.value.pin.created
+                                                            .replaceAll("T", " ")
+                                                            .replaceAll("+", " UTC+");
+
+      document.getElementById("data-size").innerText = jsonResp.value.pin.size;
+      document.getElementById("pin-status").innerText = jsonResp.value.pin.status + " ("
+              + jsonResp.value.deals.length + " providers)";
+    });
+  });
+
+  // document.getElementById("reading").innerHTML = marked(editMde.value());
 </script>

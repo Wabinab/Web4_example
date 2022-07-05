@@ -4,14 +4,18 @@ window.addEventListener("load", function () {
   const address = document.getElementById("address");
   const write = document.getElementById("write");
 
-  if (window.walletConnection.getAccountId() == '') {
+  var account_id = window.walletConnection.getAccountId();
+
+  if (account_id == '') {
     login.onclick = window.login;
     address.innerText = "";
+    address.href = "#";
     write.innerText = "";
   } else {
     login.onclick = window.logout;
     login.innerText = "Logout";
-    address.innerText = window.walletConnection.getAccountId();
+    address.innerText = account_id;
+    address.href = "/account/" + account_id.replaceAll(".", "-");
     write.innerText = "Write";
   }
   

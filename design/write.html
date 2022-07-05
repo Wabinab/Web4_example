@@ -36,7 +36,10 @@
       enabled: true,
       uniqueId: autosaveUniqueId,
     },
-    spellChecker: false
+    renderingConfig: {
+      codeSyntaxHighlighting: true
+    },
+    spellChecker: false  // can add a button later on to enable English spell check. 
   });
 
   const ApiKey = document.getElementById('api_key');
