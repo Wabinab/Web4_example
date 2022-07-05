@@ -12,6 +12,7 @@ use near_sdk::{near_bindgen};
 
 const PRECOMPILED_BODY: &str = include_str!("/workspaces/Web4_example/design/precompile/precompile.html");
 const PAGINATION_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/pagination.html");
+const CONSTRUCT_CARD_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/construct_card.js");
 
 const ABOUT_BODY: &str = include_str!("/workspaces/Web4_example/design/about.html");
 const INDEX_BODY: &str = include_str!("/workspaces/Web4_example/design/index.html");
@@ -58,14 +59,14 @@ impl Contract {
 
       if splitted_path[1] == "account" {
         return Web4Response::html_response(
-          common_page_template(ACCOUNT_BODY)
+          card_and_paginate(ACCOUNT_BODY)
         );
       }
 
       // when moved here, we'll do the things here than on js. 
 
       Web4Response::html_response(
-        common_page_template(INDEX_BODY).replace("%PAGINATION%", PAGINATION_BODY)
+        card_and_paginate(INDEX_BODY)
       )
     }
 }
