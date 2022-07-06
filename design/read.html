@@ -1,0 +1,161 @@
+<div class="container pt-3 pb-5">
+  <div class="container w-75">
+    <div id="reading"></div>
+  </div>
+
+  <div class="pt-5">
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form class="pt-3 pb-3" id="tipping">
+        <div class="row g-3 align-items-center pb-3">
+          <div class="col-auto">
+            <label for="total_tip" class="col-form-label">Current Tip: </label>
+          </div>
+          <div class="col-auto">
+            <span id="total_tip"></span>
+          </div>
+          <div class="col-auto"></div>
+        </div>
+    
+        <div class="row g-3 align-items-center">
+          <div class="col-auto">
+            <label for="tip_amount" class="col-form-label">Tip Amount (in NEAR):</label>
+          </div>
+          <div class="col-auto">
+            <input type="number" step="0.001" min="0.001" id="tip_amount" class="form-control">
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Tip</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="pt-5">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">Author</th>
+          <td>
+            <a href="#" id="author-name"></a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">CID</th>
+          <td id="cid"></td>
+        </tr>
+        <tr>
+          <th scope="row">Created On</th>
+          <td id="created-on"></td>
+        </tr>
+        <tr>
+          <!-- Only IPFS Storage. NEAR Contract Storage not included. -->
+          <th scope="row">Storage Used (bytes)</th>
+          <td id="data-size"></td>
+        </tr>
+        <tr>
+          <th scope="row">Pin Status</th>
+          <td id="pin-status"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<script type="module">
+  import { marked } from 'marked';
+  import { utils }  from 'near-api-js';
+
+
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    highlight: function(code, lang) {
+      const hljs = require('highlight.js');
+      const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+      return hljs.highlight(code, { language }).value;
+    },
+    langPrefix: 'hljs language-',
+    gfm: true,
+    smartLists: true
+  })
+
+  //Unable to prevent Re-DOS attack due to only a single HTML file rather than including 
+  // multiple js file: unless with special methods. 
+
+  var id = window.location.pathname.split("/").pop();
+
+  window.contract.get_item({
+    "item_no": id
+  }).then((cid) => {
+    window.get_nft(cid).then((data) => {
+      document.getElementById("reading").innerHTML = marked.parse(
+        data.properties.content["text/markdown"]
+      );
+
+      var headers = document.querySelectorAll("h1");
+      headers.forEach((element) => element.classList.add("text-center", "pt-3", "pb-5"));
+
+      var imgs = document.querySelectorAll("img");
+      imgs.forEach((element) => element.classList.add("mx-auto", "d-block", "pb-2", "pt-2"));
+
+      var author = data.properties.author;
+      var author_element = document.getElementById("author-name")
+      author_element.innerText = author;
+      author_element.href = "/account/" + author.replaceAll(".", "-");
+
+      document.getElementById("cid").innerText = cid;
+    });
+
+    window.contract.get_tip({
+      "article_id": id
+    }).then((tip_amount) => {
+      document.getElementById("total_tip").innerText = tip_amount;
+    });
+
+
+    fetch("https://api.nft.storage/check/" + cid, {
+      method: "GET"
+    }).then(
+      (resp) => resp.json()
+    ).then((jsonResp) => {
+      document.getElementById("created-on").innerText = jsonResp.value.pin.created
+                                                            .replaceAll("T", " ")
+                                                            .replaceAll("+", " UTC+");
+
+      document.getElementById("data-size").innerText = jsonResp.value.pin.size;
+
+      if (jsonResp.value.deals.length == 1) {
+        var sop = " provider)";
+      } else {
+        var sop = " providers)";
+      }
+      document.getElementById("pin-status").innerText = jsonResp.value.pin.status + " ("
+              + jsonResp.value.deals.length + sop;
+
+      // Report if ok status false. 
+    });
+  });
+
+
+  window.addEventListener("load", function() {
+    var form = document.getElementById("tipping");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      window.contract.tip({
+        callbackUrl: window.location.href,
+        args: {
+          "article_id": id,
+          "owner_id": document.getElementById("author-name").innerText
+        },
+        gas: "10000000000000",
+        amount: utils.format.parseNearAmount(document.getElementById("tip_amount").value)
+      },);
+    })
+  });
+</script>

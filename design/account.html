@@ -1,0 +1,22 @@
+<!-- Add account info here. -->
+
+<div id="variousBlogs" class="container pt-5"></div>
+
+%PAGINATION%
+
+<script>
+    var owner_id = window.location.pathname.split("/")[2].replaceAll("-", ".");
+    var page_limit = 20;  // maybe change to smaller number? 
+
+    window.addEventListener("load", function() {
+        window.contract.get_items_by_owner({
+            "owner_id": owner_id,
+            "from_index": window.get_from_index(),
+            "limit": page_limit
+        }).then((results) => {
+            window.looper = results;
+
+            %CONSTRUCT_CARD%
+        });
+    });
+</script>

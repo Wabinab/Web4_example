@@ -2,9 +2,12 @@ use std::fs::File;
 use std::io::prelude::*;
 
 const HEAD_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/head.html");
-const CSS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/css.html");
+// const BOOTSTRAP_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/bootstrap.html");
+const CUSTOM_CSS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/css.html");
 const IMPORTMAP_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/importmap.html");
 const JS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/js.html");
+const FLASH_CSS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/extra/flash.min.css");
+const FLASH_JS_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/extra/flash.min.js");
 
 const NAVBAR_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/navbar.html");
 const LOGIN_CONTROLLER_BODY: &str = include_str!("/workspaces/Web4_example/design/controller/login_controller.html");
@@ -15,9 +18,12 @@ const BODY_BODY: &str = include_str!("/workspaces/Web4_example/design/shared/bod
 
 fn main() -> std::io::Result<()> {
     let header: &str = &HEAD_BODY
-      .replace("%STYLE%", CSS_BODY)
+      // .replace("%BOOTSTRAP%", BOOTSTRAP_BODY)
+      .replace("%STYLE%", CUSTOM_CSS_BODY)
       .replace("%IMPORTMAP%", IMPORTMAP_BODY)
-      .replace("%SCRIPT%", JS_BODY);
+      .replace("%SCRIPT%", JS_BODY)
+      .replace("%FLASH_CSS%", FLASH_CSS_BODY)
+      .replace("%FLASH_JS%", FLASH_JS_BODY);
 
     let navbar: &str = &NAVBAR_BODY
       .replace("%LOGIN_CONTROLLER%", LOGIN_CONTROLLER_BODY);

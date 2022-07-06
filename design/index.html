@@ -1,1 +1,19 @@
-<h1 class="text-center">Hi, Belle!</h1>
+<div id="variousBlogs" class="container pt-5"></div>
+
+%PAGINATION%
+
+<script>
+    var page_limit = 20;
+
+    window.addEventListener("load", function() {
+
+        window.contract.get_items_by_newest({
+            "from_index": window.get_from_index(),
+            "limit": page_limit,
+        }).then((value) => {
+            window.looper = value;
+
+            %CONSTRUCT_CARD%
+        });
+    })
+</script>

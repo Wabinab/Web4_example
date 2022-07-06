@@ -1,1 +1,95 @@
-<h1>TBD (Write)</h1>
+<div class="container pt-3 pb-5">
+
+  <form id="writeform">
+    <p class="pt-3">Get an API Key <a href="https://nft.storage/manage/">here</a></p>
+    <div class="mb-3">
+      <label for="api_key" class="form-label"><strong>NFT Storage API Key:</strong></label>
+      <textarea id="api_key" cols="80" rows="4" class="form-control"></textarea>
+      <div class="pt-3">
+        <button id="save_api" type="button" class="btn btn-secondary btn-lg col-4">Save API Key</button>
+      </div>
+    </div>
+
+    <hr>
+    <div class="pt-3 pb-3">
+      <button name="save" type="button" class="btn btn-primary btn-lg col-4">Save Locally</button>
+      <input type="submit" class="btn btn-success btn-lg col-4" value="Save to IPFS">
+    </div>
+
+    <p>
+      <textarea id="editor" form="writeform"></textarea>
+    </p>
+
+    <div class="">
+      <button name="save" type="button" class="btn btn-primary btn-lg col-4">Save Locally</button>
+      <input type="submit" class="btn btn-success btn-lg col-4" value="Save to IPFS">
+    </div>
+  </form>
+</div>
+
+<script>
+  var autosaveUniqueId = "InternalSaveWrite";
+  const editMde = new SimpleMDE({
+    element: document.getElementById('editor'),
+    placeholder: "Write Your Thoughts!",
+    autosave: {
+      enabled: true,
+      uniqueId: autosaveUniqueId,
+    },
+    renderingConfig: {
+      codeSyntaxHighlighting: true
+    },
+    spellChecker: false  // can add a button later on to enable English spell check. 
+  });
+
+  const ApiKey = document.getElementById('api_key');
+  var storage_key_name = 'nftstorage_api_key'
+  ApiKey.value = localStorage.getItem(storage_key_name);
+
+  window.addEventListener("load", function() {
+    const form = document.getElementById("writeform");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      if (confirm("Cannot Edit Anymore. Continue?")) {
+        localStorage.setItem(storage_key_name, ApiKey.value);
+
+        window.store_nft(
+          editMde.value(), 
+          ApiKey.value,
+          autosaveUniqueId
+        );
+      } else {
+        window.FlashMessage.info("Cancelled Uneditable Save.")
+      }
+    })
+
+
+    // Local save
+    function save_locally() {
+      localStorage.setItem(autosaveUniqueId, editMde.value());
+      window.FlashMessage.success("Saved Locally.");
+    }
+
+    document.getElementsByName("save").forEach((value) => {
+      value.onclick = function() { save_locally() };
+    })
+
+    // CTRL+S to save_locally
+    document.onkeydown = (e) => {
+      if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        save_locally();
+        save_api_key();
+      }
+    }
+
+    function save_api_key() {
+      localStorage.setItem(storage_key_name, ApiKey.value);
+      window.FlashMessage.success("Saved API Key.");
+    }
+
+    document.getElementById("save_api").onclick = function() { save_api_key() };
+  })
+</script>
