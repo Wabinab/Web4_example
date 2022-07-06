@@ -125,9 +125,10 @@ window.accountId = window.walletConnection.getAccountId()
 // Initializing our contract APIs by contract name and configuration
 window.contract = await new Contract(window.walletConnection.account(), nearConfig.contractName, {
   // View methods are read only. They don't modify the state, but usually return some value.
-  viewMethods: ['get_item', 'get_items_by_newest', 'get_items_by_owner', 'est_storage'],
+  viewMethods: ['get_item', 'get_items_by_newest', 'get_items_by_owner', 'est_storage', 'get_tip'],
+
   // Change methods can modify the state. But you don't receive the returned value when called.
-  changeMethods: ['register_log'],
+  changeMethods: ['register_log', 'tip'],
 })
 
 function logout() {
@@ -232,6 +233,10 @@ window.get_nft = get_nft
   .no_link {
     color: inherit;
     text-decoration: inherit;
+  }
+
+  .pb-6 {
+  padding-bottom: 10rem !important;
   }
 </style>
 </head>

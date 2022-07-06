@@ -10,11 +10,11 @@ var header = `
 var footer =  `</div></div></div></div></a>`;
 
 var str = "";
-window.looper.forEach((slide, reversed_index) => {
-    var index = window.looper.length - reversed_index - 1;
+window.looper.forEach((slide) => {
+    var index = slide[0];
     str += '<a href="#" class="no_link" id="href-' + index + '">'
         + header
-        + '<h5 class="card-title" id="title-' + index + '">' + slide + '</h5>' 
+        + '<h5 class="card-title" id="title-' + index + '">' + slide[1] + '</h5>' 
         + '<p class="card-text" id="author-' + index + '">' + '</p>'
         + '<p class="card-text" id="text-' + index + '">' + '</p>'
         + footer;
@@ -23,9 +23,9 @@ window.looper.forEach((slide, reversed_index) => {
 // str += footer;
 document.getElementById("variousBlogs").innerHTML = str;
 
-window.looper.forEach((value, reversed_index) => {
-    window.get_nft(value).then(data => {
-        var index = window.looper.length - reversed_index - 1;
+window.looper.forEach((value) => {
+    window.get_nft(value[1]).then(data => {
+        var index = value[0];
         document.getElementById("href-" + index).href = "/article/" + index;
         document.getElementById("title-" + index).innerText = data.name;
         document.getElementById("author-" + index).innerText = data.properties.author;

@@ -21,7 +21,9 @@ pub(crate) fn estimate_total_storage(
   cid: &str,
   account_id: &AccountId
 ) -> u64 {
-    estimate_storage(cid) + estimate_owner_storage(first_time, account_id)
+    estimate_storage(cid) 
+    + estimate_owner_storage(first_time, account_id)
+    + 57u64  // total_tip storage cost; always constant. 
 }
 
 
@@ -49,7 +51,8 @@ pub(crate) fn calc_storage_cost(storage_used: u64) -> Balance {
 }
 
 
-pub fn yoctonear_to_near(amount: u128) -> f64 {
+// This and below function can be refactored out in the future. 
+pub(crate) fn yoctonear_to_near(amount: u128) -> f64 {
     let decimals = 5;
 
     let amount_str = amount.to_string();
@@ -87,6 +90,53 @@ pub fn yoctonear_to_near(amount: u128) -> f64 {
 
     num.parse().unwrap()
 }
+
+
+pub(crate) fn tip_language_to_near(amount: u64) -> f64 {
+    let decimals = 3;
+
+    let amount_str = amount.to_string();
+    let amount_bytes = amount_str.as_bytes();
+    let amount_len = amount_bytes.len();
+
+    let mut num: String = "".to_owned();
+
+    if amount_len < decimals {
+      // less than 1 NEAR
+      num.push_str("0.");
+
+      let append_zeros = decimals - amount_len;
+      for _ in 0..append_zeros {
+        num.push_str("0")
+      }
+
+      for i in 0..amount_len {
+        num.push(amount_bytes[i] as char)
+      }
+    } else {
+      // at least 1 NEAR
+
+      let left = amount_len - 3;
+
+      for i in 0..left {
+        num.push(amount_bytes[i] as char)
+      }
+      num.push_str(".");
+      for i in left..left+decimals {
+        num.push(amount_bytes[i] as char)
+      }
+    }
+
+    num.parse().unwrap()
+}
+
+
+pub(crate) fn yoctonear_to_tip_language(deposit: u128) -> u64 {
+    (yoctonear_to_near(deposit) * 1000 as f64) as u64
+}
+
+
+
 
 
 impl Contract {

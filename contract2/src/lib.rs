@@ -8,31 +8,32 @@ use near_sdk::{
     Promise, AccountId, CryptoHash
 };
 use near_sdk::collections::{Vector, UnorderedMap, UnorderedSet};
-// use ehttp::Response;
 
 mod utils;
+mod tipping;
 
 pub(crate) use crate::utils::*;
+pub use crate::tipping::*;
 
+// Some refactoring needs to be done: that may be implement in the future. 
+// E.G. use a single object rather than 3 different Vectors. 
 
-// #[near_bindgen]
-// #[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
-// pub struct OldContract {
-//     pub list_of_wlog: Vector<String>,
-// }
 
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
 pub struct Contract {
     pub list_of_wlog: Vector<String>,
-    pub wlog_by_owner: UnorderedMap<AccountId, UnorderedSet<u64>>
+    pub wlog_by_owner: UnorderedMap<AccountId, UnorderedSet<u64>>,
+    pub total_tip_by_article: Vector<u64>,   // 1_000 means 1 NEAR, so 3.D.P. 
 }
+
 
 #[derive(BorshDeserialize, BorshSerialize, BorshStorageKey)]
 enum StorageKey {
     ListOfWlog,
     WlogByOwner,
-    WlogByOwnerInner { token_type_hash: CryptoHash }
+    WlogByOwnerInner { token_type_hash: CryptoHash },
+    TotalTip,
 }
 
 
@@ -42,13 +43,10 @@ impl Contract {
     pub fn new() -> Self {
         Self { 
           list_of_wlog: Vector::new(StorageKey::ListOfWlog),
-          wlog_by_owner: UnorderedMap::new(StorageKey::WlogByOwner)
+          wlog_by_owner: UnorderedMap::new(StorageKey::WlogByOwner),
+          total_tip_by_article: Vector::new(StorageKey::TotalTip),
         }
     }
-
-
-    
-
 
     #[payable]
     pub fn register_log(
@@ -78,8 +76,14 @@ impl Contract {
             )
         );
 
+        require!(
+            self.list_of_wlog.len() == self.total_tip_by_article.len(),
+            "Please contact admin with error: list_of_wlog and total_tip_by_article not same length."
+        );
+
         // How to check the given cid is correct? I don't know. 
         self.list_of_wlog.push(&cid);
+        self.total_tip_by_article.push(&0u64);
 
         // Add token to owner
         self.internal_add_token_to_owner(
@@ -140,17 +144,21 @@ impl Contract {
         &self,
         from_index: Option<String>,
         limit: Option<u64>,
-    ) -> Vec<String> {
+    ) -> Vec<(String, String)> {
         let newest_id = self.list_of_wlog.len() - 1;
         let from_index = from_index.unwrap_or("0".to_owned());
         let start: u64 = from_index.as_str().parse().unwrap();
         let limit = limit.unwrap_or(10);
 
-        let mut result: Vec<String> = vec![];
+        let mut result: Vec<(String, String)> = vec![];
 
         for i in 0..limit {
             if newest_id >= (start + i) {
-                result.push(self.list_of_wlog.get(newest_id - start - i).unwrap());
+                let curr_id = (newest_id - start - i).to_string();
+                result.push((
+                    curr_id.clone(),
+                    self.get_item(curr_id)
+                ));
             }
         }
 
@@ -168,7 +176,7 @@ impl Contract {
         owner_id: AccountId,
         from_index: Option<String>,
         limit: Option<u64>
-    ) -> Vec<String> {
+    ) -> Vec<(String, String)> {
         let tokens_set = self.wlog_by_owner.get(&owner_id);
 
         let tokens: UnorderedSet<u64> = if let Some(value) = tokens_set {
@@ -184,17 +192,25 @@ impl Contract {
         let start: u64 = from_index.as_str().parse().unwrap();
         let limit = limit.unwrap_or(10);
 
-        let mut result: Vec<String> = vec![];
+        let mut result: Vec<(String, String)> = vec![];
 
         for i in 0..limit {
             if newest_id >= (start + i) {
-                result.push(self.get_item(
-                    ids.get(newest_id - start - i).unwrap().to_string()
+                let curr_id = ids.get(newest_id - start - i).unwrap().to_string();
+                result.push((
+                    curr_id.clone(),
+                    self.get_item(curr_id)
                 ));
             }
         }
 
         result
+    }
+
+
+    #[private]
+    pub fn migrate(&mut self) {
+        self.total_tip_by_article.push(&0);
     }
 
 
@@ -208,8 +224,32 @@ impl Contract {
 
     //     Self {
     //         list_of_wlog: old_state.list_of_wlog,
-    //         wlog_by_owner: UnorderedMap::new(StorageKey::WlogByOwner)
+    //         wlog_by_owner: old_state.wlog_by_owner,
+    //         total_tip_by_article: Vector::new(StorageKey::TotalTip)
     //     }
     // }
 }
 
+
+#[cfg(all(test, not(target_arch = "wasm32")))]
+mod tests {
+    use super::*;
+
+
+    #[test]
+    fn test_tip_language_to_near_1_as_expected() {
+        assert_eq!(tip_language_to_near(74), 0.074);
+    }
+
+
+    #[test]
+    fn test_tip_language_to_near_2_as_expected() {
+        assert_eq!(tip_language_to_near(3257), 3.257);
+    }
+
+
+    #[test]
+    fn test_tip_language_to_near_3_as_expected() {
+        assert_eq!(tip_language_to_near(128), 0.128);
+    }
+}
