@@ -13,13 +13,9 @@
         var prev = document.getElementById("prev-page");
         var next = document.getElementById("next-page");
 
-        if (window.location.search != '') {
-            var current_page = parseInt(window.location.search.split("?page=")[1].split("&")[0]);
-        } else {
-            var current_page = 1;
-        }
+        var current_page = window.current_page();
 
-
+        
         home.onclick = function(event) {
             event.preventDefault();
             window.location.search = "?page=1";

@@ -138,7 +138,8 @@ async function store_nft(markdown_text, api_key, autosaveUniqueId) {
 
       // Calculate storage cost then call contract with that amount. 
       window.contract.est_storage({
-        "cid": dataValue.cid
+        "cid": dataValue.cid,
+        "owner_id": window.walletConnection.getAccountId()
       }).then((amount) => {
         window.contract.register_log({
           callbackUrl: window.location.origin,
@@ -172,12 +173,24 @@ async function get_nft(cid) {
 }
 
 
-function get_from_index() {
+function current_page() {
     if (window.location.search != '') {
-        var current_page = parseInt(window.location.search.split("?page=")[1].split("&")[0]);
+        var splitting = window.location.search.split("?page=");
+        if (splitting.length != 1) {
+          var current_page = parseInt(window.location.search.split("?page=")[1].split("&")[0]);
+        } else {
+          var current_page = 1;
+        }
     } else {
         var current_page = 1;
     }
+
+    return current_page;
+}
+
+
+function get_from_index() {
+    var current_page = window.current_page();
     var from_index = page_limit * (current_page - 1);
     var from_index = from_index.toString();
 
@@ -187,5 +200,6 @@ function get_from_index() {
 
 window.store_nft = store_nft
 window.get_nft = get_nft
+window.current_page = current_page
 window.get_from_index = get_from_index
 </script>

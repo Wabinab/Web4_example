@@ -113,8 +113,8 @@ impl Contract {
     }
 
 
-    pub fn est_storage(&self, cid: String) -> U128 {
-        let first_time = match self.wlog_by_owner.get(&env::predecessor_account_id()) {
+    pub fn est_storage(&self, cid: String, owner_id: AccountId) -> U128 {
+        let first_time = match self.wlog_by_owner.get(&owner_id) {
             Some(_) => false,
             None => true
         };
@@ -122,7 +122,7 @@ impl Contract {
         U128(calc_storage_cost(estimate_total_storage(
             first_time, 
             &cid, 
-            &env::predecessor_account_id()
+            &owner_id
         )))
     }
 
