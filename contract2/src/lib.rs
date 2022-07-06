@@ -208,12 +208,6 @@ impl Contract {
     }
 
 
-    #[private]
-    pub fn migrate(&mut self) {
-        self.total_tip_by_article.push(&0);
-    }
-
-
     // #[private]
     // #[init(ignore_state)]
     // pub fn migrate() -> Self {

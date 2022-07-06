@@ -50,7 +50,7 @@
   <!-- Scripts -->
 <script type="module">
 import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
-const CONTRACT_NAME = 'oregon.fakenear.testnet'
+const CONTRACT_NAME = 'contract.wlog.near'
 
 function getConfig(env) {
   switch (env) {
@@ -112,7 +112,7 @@ function getConfig(env) {
   }
 }
 
-const nearConfig = getConfig('development')
+const nearConfig = getConfig('production')
 const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig))
 
 // Initializing Wallet based Account. It can work with NEAR testnet wallet that
@@ -220,8 +220,23 @@ async function get_nft(cid) {
     return jsonResp;
 }
 
+
+function get_from_index() {
+    if (window.location.search != '') {
+        var current_page = parseInt(window.location.search.split("?page=")[1].split("&")[0]);
+    } else {
+        var current_page = 1;
+    }
+    var from_index = page_limit * (current_page - 1);
+    var from_index = from_index.toString();
+
+    return from_index;
+}
+
+
 window.store_nft = store_nft
 window.get_nft = get_nft
+window.get_from_index = get_from_index
 </script>
   <!-- Custom Style Outside of Bootstrap -->
 <style>

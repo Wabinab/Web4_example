@@ -11,7 +11,7 @@
     window.addEventListener("load", function() {
         window.contract.get_items_by_owner({
             "owner_id": owner_id,
-            "from_index": "0",
+            "from_index": window.get_from_index(),
             "limit": page_limit
         }).then((results) => {
             window.looper = results;

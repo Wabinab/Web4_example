@@ -6,17 +6,9 @@
     var page_limit = 20;
 
     window.addEventListener("load", function() {
-        // Get current page number and render differently. 
-        if (window.location.search != '') {
-            var current_page = parseInt(window.location.search.split("?page=")[1].split("&")[0]);
-        } else {
-            var current_page = 1;
-        }
-        var from_index = page_limit * (current_page - 1);
-        var from_index = from_index.toString();
 
         window.contract.get_items_by_newest({
-            "from_index": from_index,
+            "from_index": window.get_from_index(),
             "limit": page_limit,
         }).then((value) => {
             window.looper = value;
